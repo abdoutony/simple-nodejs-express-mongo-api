@@ -15,9 +15,7 @@ class crmController {
   //this function recive the body of the request then create a new record using the model
   async addContact(body) {
     let newContact = this.Contact(body);
-    newContact.save();
-    let contacts = await this.Contact.find();
-    return contacts;
+    return await newContact.save();
   }
 
   //this function will return all the contacts from the database

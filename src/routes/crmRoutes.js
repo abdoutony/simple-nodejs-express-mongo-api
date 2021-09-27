@@ -6,9 +6,11 @@ const crmController = require("../controllers/crmController");
 
 // create a new instance of the controller
 const CrmController = new crmController();
+const auth = require("../../middleware/auth");
 
-module.exports = () => {
+module.exports = (params) => {
   // route for adding a new contact
+
   router.post("/contact", async (req, res) => {
     try {
       let body = req.body;
@@ -19,7 +21,7 @@ module.exports = () => {
     }
   });
 
-  router.get("/contact", async (req, res) => {
+  router.get("/contact", auth, async (req, res) => {
     //route for getting all the contacts
     try {
       let contacts = await CrmController.getContacts();
